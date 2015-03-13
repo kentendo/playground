@@ -1,0 +1,23 @@
+{
+  "name": "playground.kennycosca.com",
+  "version": "0.0.1",
+  "description": "Web Coding Playground",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://kentendo@bitbucket.org/kentendo/playground.git"
+  },
+  "keywords": [
+    "node",
+    "angular",
+    "fun"
+  ],
+  "author": "kentendo",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.12.2"
+  }
+}
