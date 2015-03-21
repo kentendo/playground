@@ -1,0 +1,18 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Playground Embed Test</title>
+		<meta charset="utf-8"/>
+	</head>
+	<body>
+		<script id='kp'>
+			(function(width, height, id, iframe, kp) {
+				iframe = document.createElement('iframe'), kp = document.getElementById('kp');
+				iframe.width = width;
+				iframe.height = height;
+				iframe.src = '//playground.kennycosca.com/#/' + id;
+				kp.parentNode.insertBefore(iframe, kp);
+			})(400, 400, '550a96667c2c76e759e267d3');
+		</script>
+	</body>
+</html>

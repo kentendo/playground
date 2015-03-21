@@ -1,0 +1,45 @@
+.lert {
+	position:absolute;
+	top:5px;
+	right:20px;
+	padding:20px;
+	background-color:#eee;
+	color:#000'
+}
+
+.exclamation {
+	color:#fff;
+	padding:5px;
+}
+
+.success .exclamation {
+	background-color:green;
+}
+
+.error .exclamation {
+	background-color:red;
+}
+
+.warning .exclamation {
+	background-color:yellow;
+}
+
+.info .exclamation {
+	background-color:blue;
+}
+
+.lert.success {
+	color:green;
+}
+
+.lert.error {
+	color:red;
+}
+
+.lert.warning {
+	color:yellow;
+}
+
+.lert.info {
+	color:blue;
+}
