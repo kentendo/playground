@@ -1,5 +1,5 @@
 var app = angular.module('kp', [])
-app.config(function($locationProvider) {
+.config(function($locationProvider) {
   //$locationProvider.html5Mode(true);
 })
 .controller('MainController', ['$scope', '$location', '$timeout', 'PlaygroundAPI', 'LertService', function($scope, $location, $timeout, playgroundAPI, lerts) {
@@ -34,18 +34,18 @@ app.config(function($locationProvider) {
 					$scope.edited = false;
 					prettyPrint();
 				}, 0, true);
-				lerts.lert('success', 'Loaded ' + $scope.playground.name);
+				//lerts.lert('success', 'Loaded ' + $scope.playground.name);
 			}
 		})
 		.error(function(data, status, headers, config){
 		    lerts.lert('error', 'Could not connect to api');
 		});
-	}
+	};
 	
 	$scope.refresh = function() {
 		var iframe = document.getElementById('iframe');
 		iframe.srcdoc = "<!DOCTYPE html><html><head><style>"+$scope.playground.css+"</style></head><body>"+$scope.playground.html+"<script>"+$scope.playground.js+"</script></body></html>";
-	}
+	};
 	
 	if($location.path()) {
 		$scope.get($location.path().slice(1));

@@ -7,17 +7,17 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 		<link rel="publisher" href="https://plus.google.com/109482188070809842623" />
 		<link rel="author" href="https://www.google.com/+kennycosca" />
-		<link rel="stylesheet" type="text/css" href="/css/lerts.css" />
-		<link rel="stylesheet" type="text/css" href="/css/sons-of-obsidian.css" />
-		<link rel="stylesheet" type="text/css" href="/css/embed.css" />
+		<link rel="stylesheet" href="/css/lerts.css" />
+		<link rel="stylesheet" href="/css/sons-of-obsidian.css" />
+		<link rel="stylesheet" href="/css/embed.css" />
 	</head>
 	<body data-ng-controller="MainController">
 		<header>
 			<h1 class="mobile-hide">{{playground.name}}</h1>
 			<div class="tab-buttons">
-				<button data-ng-click="tab=1" data-ng-class="{disabled:tab != 1}">html</button>
-				<button data-ng-click="tab=2" data-ng-class="{disabled:tab != 2}">css</button>
-				<button data-ng-click="tab=3" data-ng-class="{disabled:tab != 3}">js</button>
+				<button data-ng-show="playground.html" data-ng-click="tab=1" data-ng-class="{disabled:tab != 1}">html</button>
+				<button data-ng-show="playground.css" data-ng-click="tab=2" data-ng-class="{disabled:tab != 2}">css</button>
+				<button data-ng-show="playground.js" data-ng-click="tab=3" data-ng-class="{disabled:tab != 3}">js</button>
 				<button data-ng-click="tab=4" data-ng-class="{disabled:tab != 4}">output</button>
 			</div>
 		</header>

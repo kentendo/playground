@@ -1,5 +1,6 @@
 (function(width, height, id, iframe, bcp) {
-	iframe = document.createElement('iframe'), bcp = document.getElementById('bcp');
+	iframe = document.createElement('iframe');
+	bcp = document.getElementById('bcp');
 	iframe.width = width;
 	iframe.height = height;
 	iframe.src = '//playground.kennycosca.com/embed/' + id;

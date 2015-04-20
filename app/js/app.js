@@ -1,5 +1,5 @@
 var app = angular.module('kp', [])
-app.config(function($locationProvider) {
+.config(function($locationProvider) {
   //$locationProvider.html5Mode(true);
 })
 .controller('MainController', ['$scope', '$location', '$http', '$templateCache', '$compile', '$timeout', 'PlaygroundAPI', 'LertService', function($scope, $location, $http, $templateCache, $compile, $timeout, playgroundAPI, lerts) {
@@ -15,37 +15,46 @@ app.config(function($locationProvider) {
 	};
 
 	$scope.autoRefresh = true;
-	$scope.showOutput = (params.output == 'false') ? false : true;
-	$scope.showHTML = (params.html == 'false') ? false : true;
-	$scope.showCSS = (params.css == 'false') ? false : true;
-	$scope.showJS = (params.js == 'false') ? false : true;
+	$scope.showOutput = (params.output === 'false') ? false : true;
+	$scope.showHTML = (params.html === 'false') ? false : true;
+	$scope.showCSS = (params.css === 'false') ? false : true;
+	$scope.showJS = (params.js === 'false') ? false : true;
 	$scope.showCode = true;
 	$scope.toolHeight = '33.3333%';
 	$scope.iframeWidth = '66.6666%';
 	$scope.edited = false;
 	
+	$scope.mirrorRefresh = function(){
+		$scope.mirrorJs.refresh();
+		$scope.mirrorCss.refresh();
+		$scope.mirrorHtml.refresh();
+	};
+	
 	$scope.$watchGroup(['showHTML', 'showCSS', 'showJS'], function(){
 		$scope.toolHeight = $scope.getToolHeight();
 		$scope.toolWidth = $scope.getToolWidth();
 		$scope.iframeWidth = $scope.getIframeWidth();
-		$scope.showCode = ($scope.getToolCount() == 0) ? false : true;
+		$scope.showCode = ($scope.getToolCount() === 0) ? false : true;
+		$timeout(function(){
+			$scope.mirrorRefresh();
+		});
 	});
 	
 	$scope.getToolCount = function(){
 		return Number($scope.showHTML) + Number($scope.showCSS) + Number($scope.showJS);
-	}
+	};
 	
 	$scope.getToolHeight = function(){
 		return String(Number(100 / $scope.getToolCount()).toFixed(4)) + '%';
-	}
+	};
 	
 	$scope.getToolWidth = function(){
 		return ($scope.showOutput) ? '33.3333%' : '100%';
-	}
+	};
 	
 	$scope.getIframeWidth = function(){
-		return ($scope.getToolCount() == 0) ? '100%' : '66.6666%';
-	}
+		return ($scope.getToolCount() === 0) ? '100%' : '66.6666%';
+	};
 		
 	$scope.$watch('playground.name', function(){
 		$scope.edited = true;
@@ -67,6 +76,37 @@ app.config(function($locationProvider) {
 				$scope.playground = data.data;
 				$timeout(function(){
 					$scope.edited = false;
+					
+					$scope.mirrorHtml = CodeMirror.fromTextArea(document.getElementById("html"), {
+					    lineNumbers: true,
+					    mode: "htmlmixed",
+					    theme: 'mbo'
+					});
+					$scope.mirrorHtml.on('change', function(instance, changeObj){
+						$scope.playground.html = html.getValue();
+						$scope.$apply();
+					});
+					
+					$scope.mirrorCss = CodeMirror.fromTextArea(document.getElementById("css"), {
+					    lineNumbers: true,
+					    mode: "css",
+					    theme: 'mbo'
+					});
+					$scope.mirrorCss.on('change', function(instance, changeObj){
+						$scope.playground.css = css.getValue();
+						$scope.$apply();
+					});
+					
+					$scope.mirrorJs = CodeMirror.fromTextArea(document.getElementById("js"), {
+					    lineNumbers: true,
+					    mode: "javascript",
+					    theme: 'mbo'
+					});
+					$scope.mirrorJs.on('change', function(instance, changeObj){
+						$scope.playground.js = js.getValue();
+						$scope.$apply();
+					});
+					
 				}, 0, true);
 				lerts.lert('success', 'Loaded ' + $scope.playground.name);
 			}
@@ -74,7 +114,7 @@ app.config(function($locationProvider) {
 		.error(function(data, status, headers, config){
 		    lerts.lert('error', 'Could not connect to api');
 		});
-	}
+	};
 	
 	$scope.refresh = function() {
 		var iframe = document.getElementById('iframe');
@@ -94,12 +134,12 @@ app.config(function($locationProvider) {
 // 			
 			// iframe.srcdoc = html;
 		// });
-	}
+	};
 	
 	$scope.create = function(){
 		playgroundAPI.create($scope.playground)
 		.success(function(data, status, headers, config){
-			if(data.length == 0) $scope.new();
+			if(data.length === 0) $scope.new();
 			else {
 				lerts.lert('success', 'Created dat');
 				$scope.playground._id = data.data;
@@ -109,7 +149,7 @@ app.config(function($locationProvider) {
 		.error(function(data, status, headers, config){
 			lerts.lert('error', 'Couldn\'t create dat');
 		});
-	}
+	};
 	
 	$scope.update = function(){
 		playgroundAPI.update($scope.playground)
@@ -120,21 +160,21 @@ app.config(function($locationProvider) {
 		.error(function(data, status, headers, config){
 			lerts.lert('error', 'Couldn\t save dat');
 		});
-	}
+	};
 	
 	$scope.save = function() {
-		if($scope.edited == false)
+		if($scope.edited === false)
 		{
 			lerts.lert('error', 'No edits');
 			return false;
 		}
 		
-		if($scope.playground.html == '' && $scope.playground.css == '' && $scope.playground.js == '') {
+		if($scope.playground.html === '' && $scope.playground.css === '' && $scope.playground.js === '') {
 			lerts.lert('error', 'Das blank');
 			return false;
 		}
 		
-		if($scope.playground.name == '')
+		if($scope.playground.name === '')
 			$scope.playground.name = prompt('Name dat or don\'t do dat...');
 		
 		if($scope.playground._id) {
@@ -142,7 +182,7 @@ app.config(function($locationProvider) {
 		} else {
 			$scope.create();
 		}
-	}
+	};
 	
 	if($location.path()) {
 		$scope.get($location.path().slice(1));

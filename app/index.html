@@ -7,29 +7,25 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 		<link rel="publisher" href="https://plus.google.com/109482188070809842623" />
 		<link rel="author" href="https://www.google.com/+kennycosca" />
-		<link rel="stylesheet" type="text/css" href="/css/styles.css" />
-		<link rel="stylesheet" type="text/css" href="/css/lerts.css" />
-		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-route.min.js"></script>
-		<script src="/js/app.js"></script>
-		<script src="/js/playground-api.js"></script>
-		<script src="/js/lerts.js"></script>
-		<script src="/js/contenteditable.js"></script>
+		<link rel="stylesheet" href="/lib/codemirror/codemirror.css">
+		<link rel="stylesheet" href="/lib/codemirror/theme/mbo.css">
+		<link rel="stylesheet" href="/lib/lerts/lerts.css" />
+		<link rel="stylesheet" href="/css/styles.css" />
 	</head>
 	<body data-ng-controller="MainController">
 		<header>
 			<h1 contentEditable data-ng-model="playground.name" spellcheck="false">playground</h1>
 		</header>
 		<div class="main">
-			<div id="code" data-ng-show="showCode" ng-style="{width:getToolWidth()}">
-				<div data-ng-show="showHTML" ng-style="{height:getToolHeight()}">
-					<textarea placeholder="Enter HTML Here!" data-ng-model="playground.html" spellcheck="false"></textarea>
+			<div id="code" data-ng-show="showCode" data-ng-style="{width:getToolWidth()}">
+				<div data-ng-show="showHTML" data-ng-style="{height:getToolHeight()}">
+					<textarea id="html" placeholder="Enter HTML Here!" data-ng-model="playground.html" spellcheck="false"></textarea>
 				</div>
-				<div data-ng-show="showCSS" ng-style="{height:getToolHeight()}">
-					<textarea placeholder="Enter CSS Here!" data-ng-model="playground.css" spellcheck="false"></textarea>
+				<div data-ng-show="showCSS" data-ng-style="{height:getToolHeight()}">
+					<textarea id="css" placeholder="Enter CSS Here!" data-ng-model="playground.css" spellcheck="false"></textarea>
 				</div>
-				<div data-ng-show="showJS" ng-style="{height:getToolHeight()}">
-					<textarea placeholder="Enter JavaScript Here!" data-ng-model="playground.js" spellcheck="false"></textarea>
+				<div data-ng-show="showJS" data-ng-style="{height:getToolHeight()}">
+					<textarea id="js" placeholder="Enter JavaScript Here!" data-ng-model="playground.js" spellcheck="false"></textarea>
 				</div>
 			</div>
 			<div id="output" data-ng-show="showOutput" data-ng-style="{width:getIframeWidth()}">
@@ -61,5 +57,16 @@
 				</button>
 			</div>
 		</footer>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-route.min.js"></script>
+		<script src="/js/app.js"></script>
+		<script src="/js/playground-api.js"></script>
+		<script src="/lib/lerts/lerts.js"></script>
+		<script src="/lib/contenteditable/contenteditable.js"></script>
+		<script src="/lib/codemirror/codemirror.js"></script>
+		<script src="/lib/codemirror/mode/xml/xml.js"></script>
+		<script src="/lib/codemirror/mode/css/css.js"></script>
+		<script src="/lib/codemirror/mode/javascript/javascript.js"></script>
+		<script src="/lib/codemirror/mode/htmlmixed/htmlmixed.js"></script>
 	</body>
 </html>

@@ -5,14 +5,20 @@
 		<meta charset="utf-8"/>
 	</head>
 	<body>
+		<h1>This is a test</h1>
+		<p>I am testing the embed js snippet below</p>
 		<script id='kp'>
 			(function(width, height, id, iframe, kp) {
 				iframe = document.createElement('iframe'), kp = document.getElementById('kp');
 				iframe.width = width;
 				iframe.height = height;
-				iframe.src = '//playground.kennycosca.com/#/' + id;
+				iframe.style.border = '0';
+				iframe.src = '//playground.kennycosca.com/embed.html#' + id;
 				kp.parentNode.insertBefore(iframe, kp);
-			})(400, 400, '550a96667c2c76e759e267d3');
+			})(400, 400, '5511f20606234bff06eb80d6');
+			// 550ca8827c2c76e759e267d7
+			// 5511f20606234bff06eb80d6
+			// 550a96667c2c76e759e267d3
 		</script>
 	</body>
 </html>

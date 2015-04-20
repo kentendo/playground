@@ -45,6 +45,10 @@ header button:hover {
 	background-color:#fda;
 }
 
+header button:focus {
+	outline:0;
+}
+
 header button:active {
 	background-color:#333;
 }
@@ -92,6 +96,7 @@ textarea, iframe {
 
 ol.linenums {
 	margin:0;
+	word-wrap: break-word;
 }
 
 @media (max-width: 480px) {

@@ -31,6 +31,7 @@ var app = express();
 var bodyParser = require('body-parser');
 var multer = require('multer');
 
+app.use(express.static(__dirname));
 app.use(cors());
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
@@ -43,19 +44,19 @@ app.get('/api/:id', function(req, res) {
 	});
 });
 
-app.post('/api/:id', function(req, res) {
-	Playground.findOneAndUpdate({_id: req.params.id}, req.body, {}, function(err, playground){
-		if(err) res.json({success:false, message:'error', data:err});
-		else if(playground == 0) res.json({success:false, message:'no playground found'});
-		else if(playground) res.json({success:true, message:'playground updated'});
-	});
-});
-
 app.post('/api', function(req, res) {
 	var playground = new Playground(req.body);
 	playground.save(function(err, playground){
 		if(err) res.json({success:false, message:'error', data:err});
 		else res.json({success:true, message:'playground created', data:playground._id})
+	});
+});
+
+app.post('/api/:id', function(req, res) {
+	Playground.findOneAndUpdate({_id: req.params.id}, req.body, {}, function(err, playground){
+		if(err) res.json({success:false, message:'error', data:err});
+		else if(playground == 0) res.json({success:false, message:'no playground found'});
+		else if(playground) res.json({success:true, message:'playground updated'});
 	});
 });
 
@@ -66,4 +67,4 @@ app.get('/embed/:id', function(req, res) {
 	});
 });
 
-app.listen(3000);
+app.listen(333);
