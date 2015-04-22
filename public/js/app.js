@@ -25,9 +25,11 @@ var app = angular.module('kp', [])
 	$scope.edited = false;
 	
 	$scope.mirrorRefresh = function(){
-		$scope.mirrorJs.refresh();
-		$scope.mirrorCss.refresh();
-		$scope.mirrorHtml.refresh();
+		if($scope.mirrorJs) {
+			$scope.mirrorJs.refresh();
+			$scope.mirrorCss.refresh();
+			$scope.mirrorHtml.refresh();
+		}
 	};
 	
 	$scope.$watchGroup(['showHTML', 'showCSS', 'showJS'], function(){
@@ -83,7 +85,7 @@ var app = angular.module('kp', [])
 					    theme: 'mbo'
 					});
 					$scope.mirrorHtml.on('change', function(instance, changeObj){
-						$scope.playground.html = html.getValue();
+						$scope.playground.html = $scope.mirrorHtml.getValue();
 						$scope.$apply();
 					});
 					
@@ -93,7 +95,7 @@ var app = angular.module('kp', [])
 					    theme: 'mbo'
 					});
 					$scope.mirrorCss.on('change', function(instance, changeObj){
-						$scope.playground.css = css.getValue();
+						$scope.playground.css = $scope.mirrorCss.getValue();
 						$scope.$apply();
 					});
 					
@@ -103,7 +105,7 @@ var app = angular.module('kp', [])
 					    theme: 'mbo'
 					});
 					$scope.mirrorJs.on('change', function(instance, changeObj){
-						$scope.playground.js = js.getValue();
+						$scope.playground.js = $scope.mirrorJs.getValue();
 						$scope.$apply();
 					});
 					
