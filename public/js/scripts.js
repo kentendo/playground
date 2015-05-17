@@ -110,7 +110,7 @@ angular.module('kentendo.playground.controllers')
     playgroundAPI.get(id)
     .success(function(data, status, headers, config){
       if(!data.success) {
-        lerts.lert('error', 'Not found');
+        lerts.lert('error', 'Not found.');
         $location.path('/');
       }
       else {
@@ -119,11 +119,11 @@ angular.module('kentendo.playground.controllers')
         $scope.cssEditor.setValue($scope.playground.css);
         $scope.jsEditor.setValue($scope.playground.js);
         $scope.edited = false;
-        lerts.lert('success', 'Loaded ' + $scope.playground.name);
+        lerts.lert('success', 'Loaded ' + $scope.playground.name + '.');
       }
     })
     .error(function(data, status, headers, config){
-        lerts.lert('error', 'Could not connect to api');
+        lerts.lert('error', 'Could not connect to api.');
     });
   };
   
@@ -139,41 +139,41 @@ angular.module('kentendo.playground.controllers')
     .success(function(data, status, headers, config){
       if(data.length === 0) $scope.new();
       else {
-        lerts.lert('success', 'Created dat');
+        lerts.lert('success', 'Created playground.');
         $scope.playground._id = data.data;
         $location.path(data.data);
       }
     })
     .error(function(data, status, headers, config){
-      lerts.lert('error', 'Couldn\'t create dat');
+      lerts.lert('error', 'Couldn\'t create playground.');
     });
   };
   
   $scope.update = function(){
     playgroundAPI.update($scope.playground)
     .success(function(data, status, headers, config){
-      lerts.lert('success', 'Saved dat');
+      lerts.lert('success', 'Saved playground.');
       $scope.edited = false;
     })
     .error(function(data, status, headers, config){
-      lerts.lert('error', 'Couldn\t save dat');
+      lerts.lert('error', 'Couldn\t save that.');
     });
   };
   
   $scope.save = function() {
     if($scope.edited === false)
     {
-      lerts.lert('error', 'No edits');
+      lerts.lert('error', 'No changes.');
       return false;
     }
     
     if($scope.playground.html === '' && $scope.playground.css === '' && $scope.playground.js === '') {
-      lerts.lert('error', 'Das blank');
+      lerts.lert('error', 'Blank.');
       return false;
     }
     
     if($scope.playground.name === '')
-      $scope.playground.name = prompt('Name dat or don\'t do dat...');
+      $scope.playground.name = prompt('Name playground or don\'t don\'t...');
     
     if($scope.playground._id) {
       $scope.update();
@@ -185,7 +185,7 @@ angular.module('kentendo.playground.controllers')
   if($location.path()) {
     $scope.get($location.path().slice(1));
   } else {
-    lerts.lert('success', 'Do dis');
+    lerts.lert('success', 'Ready.');
   }
 }]);
 
