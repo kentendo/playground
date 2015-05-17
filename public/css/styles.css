@@ -30,6 +30,11 @@ header h1 {
 	color:orange;
 }
 
+.ace_editor {
+  width:100%;
+  height:100%;
+}
+
 #code {
 	width:33.3333%;
 	height:100%;
@@ -37,16 +42,18 @@ header h1 {
 	float:left;
 }
 
-#code div textarea, #code .CodeMirror {
-	border-bottom:1px solid #ccc;
-	border-right:1px solid #ccc;
-	border-top:none;
-	border-left:none;
+#code .wrapper {
+  position:relative;
+  border-bottom:1px solid #000;
 }
 
-.CodeMirror {
-	height:100%;
-	box-sizing: border-box;
+#code .label {
+  color:#fff;
+  position:absolute;
+  top:0;
+  right:0;
+  z-index: 2;
+  cursor:default;
 }
 
 #code div:last-child textarea, #code div:last-child .CodeMirror {

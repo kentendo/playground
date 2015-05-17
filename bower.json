@@ -26,6 +26,10 @@
     "angular-route": "latest",
     "codemirror": "latest",
     "requirejs": "latest",
-    "k-alert": "*"
+    "k-alert": "*",
+    "angular-ui-ace": "~0.2.3"
+  },
+  "devDependencies": {
+    "ace-builds": "~1.1.9"
   }
 }

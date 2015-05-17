@@ -4,7 +4,7 @@ module.exports = function(grunt) {
 
 		pkg : grunt.file.readJSON('package.json'),
 		jshint : {
-			files : ['Gruntfile.js', 'public/js/app.js', 'public/js/playground-api.js', 'test/**/*.js'],
+			files : ['Gruntfile.js', '<%= concat.js.src %>'],
 			options : {
 				globals : {
 					jQuery : true
@@ -13,7 +13,7 @@ module.exports = function(grunt) {
 		},
 		concat : {
 			js : {
-				src : ['public/js/app.js', 'public/js/playground-api.js'],
+				src : ['public/js/app.js', 'public/js/config.js', 'public/js/controllers.js', 'public/js/directives.js', 'public/js/playground-api.js'],
 				dest : 'public/js/scripts.js'
 			}
 		},
@@ -50,7 +50,7 @@ module.exports = function(grunt) {
 		},
 		watch : {
 			files : ['<%= jshint.files %>'],
-			tasks : ['jshint', 'concat', 'uglify']
+			tasks : ['jshint', 'concat', 'cssmin']
 		}
 
 	});
@@ -61,6 +61,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 
-	grunt.registerTask('default', ['jshint', 'concat', 'uglify', 'cssmin', 'watch']);
+  //grunt.registerTask('default', ['jshint', 'concat', 'uglify', 'cssmin', 'watch']);
+  grunt.registerTask('default', ['jshint', 'concat', 'cssmin', 'watch']);
 
 };
