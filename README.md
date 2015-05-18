@@ -1,28 +1,15 @@
 # README #
 
-This README would normally document whatever steps are necessary to get your application up and running.
-
 ### What is this repository for? ###
 
 * Code Playground
 * 0.0.1
 
-### How do I get set up? ###
+This is a simple tool to test and share HTML, CSS, and JS.
+You can try out a live demo here...
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+http://playground.kennycosca.com/#/555372b0500559b304fb4633
 
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+* Questions, comments...
+* contact kenny
+* kenny@kennycosca.com
